@@ -1,6 +1,9 @@
-describe('verify Selenium_Easys Input Forms', function () {
-    it('verify Simple Form Demo', function () {
+describe('Input Forms validation', function () {
+    beforeEach(() => {
         cy.visit('https://www.seleniumeasy.com/test/');
+  });
+    
+    it('verify Simple Form Demo', function () {
         cy.contains('Input Forms').click();
         cy.contains('Simple Form Demo').click();
         cy.get('#user-message').click().type('hello my frend');
@@ -13,7 +16,6 @@ describe('verify Selenium_Easys Input Forms', function () {
     });
     
     it('verify CheckBox Demo', function () {
-        cy.visit('https://www.seleniumeasy.com/test/');
         cy.contains('Input Forms').click();
         cy.contains('Checkbox Demo').click();
         cy.get('input[id="isAgeSelected"]').check({ force: true });
@@ -27,7 +29,6 @@ describe('verify Selenium_Easys Input Forms', function () {
     });
     
     it('verify Radio Buttons Demo', function () {
-        cy.visit('https://www.seleniumeasy.com/test/');
         cy.contains('Input Forms').click();
         cy.contains('Radio Buttons Demo').click();
         cy.get('input[value="Male"][name="optradio"]').should('have.value', 'Male').click();
