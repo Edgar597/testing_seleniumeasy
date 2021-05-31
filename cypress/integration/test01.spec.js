@@ -2,7 +2,7 @@ describe('verify Selenium_Easys Input Forms', function () {
     it('verify Simple Form Demo', function () {
         cy.visit('https://www.seleniumeasy.com/test/');
         cy.contains('Input Forms').click();
-        cy.get('#navbar-brand-centered a[href="./basic-first-form-demo.html"]').click();
+        cy.contains('Simple Form Demo').click();
         cy.get('#user-message').click().type('hello my frend');
         cy.get('button[class="btn btn-default"]').contains('Show Message').click();
         cy.get('#user-message span').should('contain', 'hello my frend');
@@ -15,7 +15,7 @@ describe('verify Selenium_Easys Input Forms', function () {
     it('verify CheckBox Demo', function () {
         cy.visit('https://www.seleniumeasy.com/test/');
         cy.contains('Input Forms').click();
-        cy.get('.dropdown-menu a[href="./basic-checkbox-demo.html"]').click();
+        cy.contains('Checkbox Demo').click();
         cy.get('input[id="isAgeSelected"]').check({ force: true });
         cy.get('div[id="txtAge"]').should('contain', 'Success - Check box is checked');
         cy.get('.checkbox').contains('Option 1').click();
