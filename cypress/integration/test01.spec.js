@@ -20,23 +20,20 @@ describe('Input Forms validation', function () {
         cy.get('#navbar-brand-centered').contains('Input Forms').click();
         cy.contains('Simple Form Demo').click();
         cy.get('button[class="btn btn-default"]').contains('Show Message').click();
-        //cy.get('#at-cv-lightbox-button-holder a[href="#"]').click();
         cy.get('#user-message').should('not.contain','null');
         cy.get('input[id="sum1"]').type(5);
         cy.get('input[id="sum2"]').type('string');
         cy.get('button[class="btn btn-default"]').contains('Get Total').click();
         cy.get('div [id="displayvalue"]').should('contain', 'NaN');
-
-
-    })
+    });
 
     it('verify Simple Form Demo when typing not something',function() {
         cy.get('#navbar-brand-centered').contains('Input Forms').click();
         cy.contains('Simple Form Demo').click();
-        cy.get('button[class="btn btn-default"]').contains('Show Message').click();
-        cy.get('button[class="btn btn-default"]').contains('Get Total').click();
+        cy.get('.btn.btn-default').contains('Show Message').click();
+        cy.get('.btn.btn-default').contains('Get Total').click();
         cy.get('div [id="displayvalue"]').should('contain', 'NaN');
-    })
+    });
 
     it('verify CheckBox Demo', function () {
         cy.contains('Input Forms').click();
@@ -54,7 +51,7 @@ describe('Input Forms validation', function () {
     it('verify Radio Buttons Demo', function () {
         cy.contains('Input Forms').click();
         cy.contains('Radio Buttons Demo').click();
-        cy.get('input[value="Male"][name="optradio"]').should('have.value', 'Male').click();
+        cy.get('[name="optradio"]').first().should('have.value', 'Male').click();
         cy.get('#buttoncheck').should('contain', 'Get Checked value').click();
         cy.get('p.radiobutton').should('contain', "Radio button 'Male' is checked");
         cy.get('input[value="Male"][name="gender"]').click();
