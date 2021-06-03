@@ -4,17 +4,40 @@ describe('Input Forms validation', function () {
   });
     
     it('verify Simple Form Demo', function () {
-        cy.contains('Input Forms').click();
-        cy.contains('Simple Form Demo').click();
+        cy.get('#navbar-brand-centered').contains('Input Forms').click();
+        cy.get('.dropdown-menu a[href="./basic-first-form-demo.html"]').click();
         cy.get('#user-message').click().type('hello my frend');
         cy.get('button[class="btn btn-default"]').contains('Show Message').click();
         cy.get('#user-message span').should('contain', 'hello my frend');
         cy.get('input[id="sum1"]').type(5);
+        cy.get('#at-cv-lightbox-button-holder a[href="#"]').click();
         cy.get('input[id="sum2"]').type(6);
         cy.get('button[class="btn btn-default"]').contains('Get Total').click();
         cy.get('div [id="displayvalue"]').should('contain', '11');
     });
-    
+
+    it('verify Simple Form Demo when typing invalid params',function() {
+        cy.get('#navbar-brand-centered').contains('Input Forms').click();
+        cy.contains('Simple Form Demo').click();
+        cy.get('button[class="btn btn-default"]').contains('Show Message').click();
+        //cy.get('#at-cv-lightbox-button-holder a[href="#"]').click();
+        cy.get('#user-message').should('not.contain','null');
+        cy.get('input[id="sum1"]').type(5);
+        cy.get('input[id="sum2"]').type('string');
+        cy.get('button[class="btn btn-default"]').contains('Get Total').click();
+        cy.get('div [id="displayvalue"]').should('contain', 'NaN');
+
+
+    })
+
+    it('verify Simple Form Demo when typing not something',function() {
+        cy.get('#navbar-brand-centered').contains('Input Forms').click();
+        cy.contains('Simple Form Demo').click();
+        cy.get('button[class="btn btn-default"]').contains('Show Message').click();
+        cy.get('button[class="btn btn-default"]').contains('Get Total').click();
+        cy.get('div [id="displayvalue"]').should('contain', 'NaN');
+    })
+
     it('verify CheckBox Demo', function () {
         cy.contains('Input Forms').click();
         cy.contains('Checkbox Demo').click();
@@ -27,7 +50,7 @@ describe('Input Forms validation', function () {
         cy.get('#check1').click();
         cy.get('#check1').should('have.value', 'Check All');
     });
-    
+
     it('verify Radio Buttons Demo', function () {
         cy.contains('Input Forms').click();
         cy.contains('Radio Buttons Demo').click();
